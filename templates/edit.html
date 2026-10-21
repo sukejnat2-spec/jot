@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Изменить заметку{% endblock %}
+
+{% block content %}
+    <form method="post" action="/edit/{{ note[0] }}">
+        <input type="text" name="note" value="{{ note[1] }}">
+        <button>Сохранить</button>
+    </form> 
+
+    <a href="/">Назад</a>
+{% endblock %}

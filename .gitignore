@@ -1,0 +1,6 @@
+../.venv/
+venv_maga/
+venv_oma/
+__pycache__/
+*.db
+.idea/

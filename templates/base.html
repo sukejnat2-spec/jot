@@ -1,0 +1,17 @@
+<|DOCTYPE html>
+<html>
+<head>
+   <meta charset="UTF-8">
+  <title>{% block title %}Jot{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Jot</h1>
+    {% if session.get('username') %}
+        Вы вошли как {{ session['username'] }}
+    {% else %}
+        <a href="/login">Войти</a> | <a href="/register">Регистрация</a>
+    {% endif %}
+    {% block content %}{% endblock %}
+</body>
+</html>

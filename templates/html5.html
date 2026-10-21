@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Моя страница{% endblock %}
+
+{% block content %}
+    <ol>
+        {% for note in notes %}
+            <li>
+                {{ note[1] }}
+                <small>{{ note[2] }}</small>
+                <a href="/edit/{{ note[0] }}">Изменить</a>
+                <form method="post" action="/delete/{{ note[0] }}" class='inline'>
+                    <button>Удалить</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ol>
+</div>
+
+    <form method="post" action="/add">
+        <input type="text" name="note" placeholder="Введите заметку">
+        <button>Отправить</button>
+    </form>
+
+{% endblock %}
