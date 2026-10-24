@@ -1,3 +1,4 @@
+import os
 import sqlite3
 from datetime import datetime
 from flask import Flask, render_template, request, redirect, session
@@ -6,7 +7,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 
-app.secret_key = 'any-long-random-string-12345'
+app.secret_key = os.environ.get('SECRET_KEY', 'dev-key-only-for-home')
 
 def get_connection():
     return sqlite3.connect('../notetakingManager.db')
@@ -91,6 +92,7 @@ def edit_from(note_id):
     if note is None:
         return redirect('/')
 
+
     return render_template('edit.html', note=note)
 
 @app.route('/edit/<int:note_id>', methods=['POST'])
@@ -164,4 +166,5 @@ def logout():
     session.clear()
     return redirect('/login')
 
-app.run(debug=True)
+if __name__ == '__main__':
+    app.run(debug=True)
